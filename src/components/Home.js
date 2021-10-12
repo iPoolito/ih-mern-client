@@ -3,6 +3,8 @@
 import React, { useContext, useEffect } from 'react'
 import PetsContext from './../context/Pets/PetsContext'
 
+import { Link } from 'react-router-dom'
+
 import ClipLoader from 'react-spinners/ClipLoader'
 
 export default function Home() {
@@ -161,27 +163,29 @@ export default function Home() {
                 return (
                   <>
                     <div class="group relative p-4 border-r border-b border-gray-200 sm:p-6">
-                      <div class="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75">
+                      <div class="rounded-lg bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg"
-                          alt="TODO"
+                          src={e.pictureUrl}
+                          alt="Foto de mascota"
                           class="w-full h-full object-center object-cover"
                         />
                       </div>
                       <div class="pt-10 pb-4 text-center">
                         <h3 class="text-xl  font-medium text-gray-900 mb-10">
-                          <a href="#">
+                          <Link to={`/mascotas/${e._id}`}>
                             <span aria-hidden="true" class="absolute inset-0"></span>
                             {e.name}
-                          </a>
+                          </Link>
                         </h3>
 
-                        <button
-                          type="button"
-                          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                          Ver mascota
-                        </button>
+                        <Link to={`/mascotas/${e._id}`}>
+                          <button
+                            type="button"
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          >
+                            Ver mascota
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </>

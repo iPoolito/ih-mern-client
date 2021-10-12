@@ -24,6 +24,18 @@ export default function CreatePet() {
   const handleForm = event => {
     event.preventDefault()
 
+    console.log([event.target.name])
+
+    console.log(event.target.checked)
+
+    if ([event.target.name][0] === 'isVaccinated') {
+      console.log('Hola mundo')
+      setNewPet({
+        ...newPet,
+        isVaccinated: event.target.checked
+      })
+    }
+
     setNewPet({
       ...newPet,
       [event.target.name]: event.target.value
@@ -84,12 +96,29 @@ export default function CreatePet() {
                         <div className="mt-1">
                           <input
                             type="number"
-                            name="age"
                             value={newPet.age}
-                            className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
+                            name="age"
                             onChange={e => {
                               handleForm(e)
                             }}
+                            className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="sm:col-span-6">
+                        <label for="email" className="block text-sm font-medium text-gray-700">
+                          Foto de la mascota
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            value={newPet.pictureUrl}
+                            name="pictureUrl"
+                            onChange={e => {
+                              handleForm(e)
+                            }}
+                            type="text"
+                            className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
                           />
                         </div>
                       </div>
@@ -99,31 +128,18 @@ export default function CreatePet() {
                           Género
                         </label>
                         <div className="mt-1">
-                          <input
-                            name="gender"
-                            type="text"
+                          <select
                             value={newPet.gender}
-                            className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
+                            name="gender"
                             onChange={e => {
                               handleForm(e)
                             }}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="sm:col-span-6">
-                        <label for="email" className="block text-sm font-medium text-gray-700">
-                          Imagen
-                        </label>
-                        <div className="mt-1">
-                          <input
-                            value={newPet.pictureUrl}
-                            name="pictureUrl"
-                            onChange={e => {
-                              handleForm(e)
-                            }}
+                            type="email"
                             className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
-                          />
+                          >
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                          </select>
                         </div>
                       </div>
 
@@ -133,18 +149,14 @@ export default function CreatePet() {
                         </label>
 
                         <div className="mt-1">
-                          <select
+                          <input
                             type="checkbox"
                             name="isVaccinated"
-                            value={newPet.isVaccinated}
+                            checked={newPet.isVaccinated}
                             onChange={e => {
                               handleForm(e)
                             }}
-                            className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
-                          >
-                            <option>Si</option>
-                            <option>No</option>
-                          </select>
+                          />
                         </div>
                       </div>
 
@@ -154,13 +166,12 @@ export default function CreatePet() {
                         </label>
                         <div className="mt-1">
                           <textarea
-                            name="description"
-                            type="text"
                             value={newPet.description}
-                            className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
+                            name="description"
                             onChange={e => {
                               handleForm(e)
                             }}
+                            className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
                           ></textarea>
                         </div>
                       </div>
