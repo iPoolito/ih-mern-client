@@ -6,13 +6,18 @@ import PetsContext from './../context/Pets/PetsContext'
 import { Link } from 'react-router-dom'
 
 import ClipLoader from 'react-spinners/ClipLoader'
+import UsersContext from '../context/Users/UsersContex'
 
 export default function Home() {
   // ESTADO GLOBAL
   // ADQUIRIR VALORES DEL ESTADO GLOBAL A TRAVÉS DEL CONTEXTO
-  const ctx = useContext(PetsContext)
+  const ctxPets = useContext(PetsContext)
 
-  const { pets, getAllPets } = ctx
+  const { pets, getAllPets } = ctxPets
+
+  const ctxUsers = useContext(UsersContext)
+
+  const { tokenVerification } = ctxUsers
 
   // SIDE EFFECTS - USEEFFECT
 
@@ -22,6 +27,14 @@ export default function Home() {
 
   return (
     <div>
+      <button
+        onClick={() => {
+          tokenVerification()
+        }}
+      >
+        Verificar token
+      </button>
+
       <div class="bg-white">
         <div class="relative pb-32 bg-gray-800">
           <div class="absolute inset-0">
